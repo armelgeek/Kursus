@@ -59,4 +59,6 @@ export const navItems: NavItem[] = [
   }
 ];
 
-export { kAppName, kAppAbbr, kAppTagline, kAppDescription };
+const MAX_HEARTS = 5;
+
+export { kAppName, kAppAbbr, kAppTagline, kAppDescription, MAX_HEARTS };
