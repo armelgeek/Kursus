@@ -8,6 +8,8 @@ export {
     unitsRelations,
     lessons,
     userProgress,
+    userSubscription,
+    userProgressRelations,
     lessonsRelations,
     challenges,
     challengesRelations,

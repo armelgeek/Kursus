@@ -60,5 +60,6 @@ export const navItems: NavItem[] = [
 ];
 
 const MAX_HEARTS = 5;
+const DAY_IN_MS = 86_400_000;
 
-export { kAppName, kAppAbbr, kAppTagline, kAppDescription, MAX_HEARTS };
+export { kAppName, kAppAbbr, kAppTagline, kAppDescription, MAX_HEARTS, DAY_IN_MS };
