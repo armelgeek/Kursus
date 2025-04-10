@@ -15,7 +15,7 @@ Voici la classe UML du projet :
 ## Installation
 1. Clonez le dépôt :  
     ```bash
-    git clone <url-du-repo>
+    git clone https://github.com/armelgeek/Kursus
     ```
 2. Installez les dépendances :  
     ```bash
