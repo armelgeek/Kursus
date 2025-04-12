@@ -45,9 +45,9 @@ import { Session } from 'better-auth';
 import { navItems } from '@/shared/lib/constants/app.constant';
 
 export const company = {
-  name: 'Boilerplate',
+  name: 'Kursus',
   logo: GalleryVerticalEnd,
-  plan: 'Enterprise'
+  plan: 'Pro',
 };
 
 export default function AppSidebar({ session }: { session: Session }) {

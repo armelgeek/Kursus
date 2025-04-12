@@ -7,7 +7,7 @@ import { cn } from '@/shared/lib/utils';
 interface StatsCardProps {
   title: string;
   value: string | number;
-  icon: LucideIcon;
+  icon?: LucideIcon;
   description?: string;
   trend?: {
     value: number;
@@ -19,7 +19,6 @@ interface StatsCardProps {
 export const StatsCard: React.FC<StatsCardProps> = ({
   title,
   value,
-  icon: Icon,
   description,
   trend,
   className,
@@ -34,9 +33,7 @@ export const StatsCard: React.FC<StatsCardProps> = ({
           <p className="text-sm font-medium text-gray-600">{title}</p>
           <p className="text-2xl font-semibold mt-1">{value}</p>
         </div>
-        <div className="p-3 bg-primary-50 rounded-lg">
-          <Icon className="w-6 h-6 text-primary-500" />
-        </div>
+    
       </div>
 
       {(description || trend) && (

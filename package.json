@@ -9,7 +9,18 @@
     "lint": "next lint",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "tsx ./drizzle/migrate.ts",
-    "db:studio": "npx drizzle-kit studio"
+    "db:studio": "npx drizzle-kit studio", 
+    "db:push": "npx drizzle-kit push",
+    "crud": "node ./generator.mjs generate",
+    "crud:schema": "node ./generator.mjs schema",
+    "crud:config": "node ./generator.mjs config",
+    "crud:domain": "node ./generator.mjs domain",
+    "crud:hooks": "node ./generator.mjs hooks",
+    "crud:components": "node ./generator.mjs components",
+    "crud:api": "node ./generator.mjs api",
+    "crud:page": "node ./generator.mjs page",
+    "crud:navigation": "node ./generator.mjs navigation"
+
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
@@ -85,7 +96,8 @@
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^7.4.4",
     "vaul": "^1.1.2",
-    "zod": "^3.24.1"
+    "zod": "^3.24.1",
+    "commander": "^13.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -2,15 +2,17 @@
 export { users, sessions, accounts, verifications } from './auth';
 export { categories } from './categories';
 export {
-    courses,
     coursesRelations,
-    units,
     unitsRelations,
-    lessons,
     userProgress,
     userSubscription,
     userProgressRelations,
     lessonsRelations,
-    challenges,
     challengesRelations,
 } from './schema'
+
+export { courses } from './course';
+export { units } from './unit';
+export { lessons } from './lesson';
+export { challenges } from './challenge';
+export { challengeOptions } from './challengeOption';
