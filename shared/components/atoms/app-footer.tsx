@@ -25,13 +25,13 @@ const AppFooter = () => {
 
           <ul className="flex flex-col flex-1 text-gray-600 cursor-pointer">
             <Link href="/"  className="mb-2">
-              Home
+              Learn
             </Link>
-            <Link href="/about"  className="mb-2">
-              About Us
+            <Link href="/quests"  className="mb-2">
+              Quests
             </Link>
             <Link href="/contact"  className="mb-2">
-              Contact Us
+              Shop
             </Link>
           </ul>
         </div>
