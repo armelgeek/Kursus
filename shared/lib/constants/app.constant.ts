@@ -84,6 +84,15 @@ export const navItems: NavItem[] = [
     isActive: false,
     items: []
   },
+,
+  {
+    title: 'Challenge',
+    url: '/d/master/challenge',
+    icon: 'post',
+    shortcut: ['c', 'c'],
+    isActive: false,
+    items: []
+  },
 ];
 
 const MAX_HEARTS = 5;

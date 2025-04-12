@@ -4,12 +4,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Button } from '@/shared/components/ui/button';
-import { Input } from '@/shared/components/ui/input';
-import { FormSelect } from './form-select';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { ControlledFormSelect as FormSelect } from './form-select';
 import { FormDatePicker } from './form-date-picker';
 
-// Example schema - customize based on your needs
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address'),

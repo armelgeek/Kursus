@@ -1,46 +1,29 @@
-import { db } from "@/drizzle/db";
-import { challenges } from "@/drizzle/schema";
-import { eq } from "drizzle-orm";
-import { NextResponse, type NextRequest } from "next/server";
+import { headers } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
 
-export const GET = async (
-  _req: NextRequest,
-  { params }: { params: { challengeId: number } }
-) => {
+import { auth } from '@/auth';
+import { createSearchParams } from '@/shared/domain/base.search-param';
+import { createChallenge, getChallenges } from '@/features/challenge/domain/use-cases';
 
-  const data = await db.query.challenges.findFirst({
-    where: eq(challenges.id, params.challengeId),
-  });
+export async function GET(request: NextRequest) {
+   const searchParams = createSearchParams();
+   const filter = searchParams.load(request);
+  const data = await getChallenges(filter);
 
   return NextResponse.json(data);
-};
+}
 
-export const PUT = async (
-  req: NextRequest,
-  { params }: { params: { challengeId: number } }
-) => {
+export async function POST(request: NextRequest) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-  const body = (await req.json()) as typeof challenges.$inferSelect;
-  const data = await db
-    .update(challenges)
-    .set({
-      ...body,
-    })
-    .where(eq(challenges.id, params.challengeId))
-    .returning();
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
-  return NextResponse.json(data[0]);
-};
+  const body = await request.json();
+  const data = await createChallenge(body);
 
-export const DELETE = async (
-  _req: NextRequest,
-  { params }: { params: { challengeId: number } }
-) => {
-
-  const data = await db
-    .delete(challenges)
-    .where(eq(challenges.id, params.challengeId))
-    .returning();
-
-  return NextResponse.json(data[0]);
-};
+  return NextResponse.json(data);
+}
