@@ -10,6 +10,6 @@ export { userProgress } from './userProgress';
 export { lessonsRelations } from './lessonsRelation';
 export { challenges } from './challenge';
 export { challengeProgress } from './challengeProgress';
-export { challengeOptions } from './challengeOption';
+export { challengeOptions } from './challenge-option';
 export { userProgressRelations } from './userProgressRelation';
 export { challengesRelations } from './challengesRelation';

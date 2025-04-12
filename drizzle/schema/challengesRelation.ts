@@ -1,6 +1,6 @@
 import { relations } from "drizzle-orm";
 import { challenges } from "./challenge";
-import { challengeOptions } from "./challengeOption";
+import { challengeOptions } from "./challenge-option";
 import { challengeProgress } from "./challengeProgress";
 import { lessons } from "./lesson";
 

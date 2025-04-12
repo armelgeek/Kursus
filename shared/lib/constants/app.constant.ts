@@ -50,15 +50,6 @@ export const navItems: NavItem[] = [
     items: []
   },
   {
-    title: 'Category',
-    url: '/d/master/category',
-    icon: 'post',
-    shortcut: ['p', 'p'],
-    isActive: false,
-    items: []
-  }
-,
-  {
     title: 'Course',
     url: '/d/master/course',
     icon: 'post',
@@ -88,6 +79,15 @@ export const navItems: NavItem[] = [
   {
     title: 'Challenge',
     url: '/d/master/challenge',
+    icon: 'post',
+    shortcut: ['c', 'c'],
+    isActive: false,
+    items: []
+  },
+,
+  {
+    title: 'ChallengeOption',
+    url: '/d/master/challenge-option',
     icon: 'post',
     shortcut: ['c', 'c'],
     isActive: false,

@@ -1,24 +1,29 @@
-import { db } from "@/drizzle/db";
-import { challengeOptions } from "@/drizzle/schema/schema";
-import { type NextRequest, NextResponse } from "next/server";
+import { headers } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
 
-export const GET = async () => {
+import { auth } from '@/auth';
+import { createSearchParams } from '@/shared/domain/base.search-param';
+import { createChallengeOption, getChallengeOptions } from '@/features/challenge-option/domain/use-cases';
 
-  const data = await db.query.challengeOptions.findMany();
+export async function GET(request: NextRequest) {
+   const searchParams = createSearchParams();
+   const filter = searchParams.load(request);
+  const data = await getChallengeOptions(filter);
 
   return NextResponse.json(data);
-};
+}
 
-export const POST = async (req: NextRequest) => {
+export async function POST(request: NextRequest) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-  const body = (await req.json()) as typeof challengeOptions.$inferSelect;
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
-  const data = await db
-    .insert(challengeOptions)
-    .values({
-      ...body,
-    })
-    .returning();
+  const body = await request.json();
+  const data = await createChallengeOption(body);
 
-  return NextResponse.json(data[0]);
-};
+  return NextResponse.json(data);
+}
