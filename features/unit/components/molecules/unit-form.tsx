@@ -1,11 +1,15 @@
 import { Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form } from '@/components/ui/form';
 import { ControlledTextInput } from '@/shared/components/molecules/form/ControlledTextInput';
 import { useFormHandler } from '@/shared/hooks/use-form-handler';
 
 import { Unit, UnitPayload } from '../../config/unit.type';
 import { UnitFormSchema } from '../../config/unit.schema';
+import { ControlledFkSelect } from '@/shared/components/molecules/form/ControlledFkSelect';
+import { courseService } from '@/features/course/domain/course.service';
+import { Course } from '@/features/course/config/course.type';
+import { ControlledTextareaInput } from '@/shared/components/molecules/form/ControlledTextareaInput';
 
 interface UnitFormProps {
   initialData: Partial<Unit> | null;
@@ -17,7 +21,8 @@ export const UnitForm = ({ initialData = null, onSubmit, onSuccess }: UnitFormPr
   const { form, handleSubmit, isSubmitting } = useFormHandler<UnitPayload>({
     schema: UnitFormSchema,
     initialValues: initialData || {
-      name: ''
+      title: '',
+      order: 1,
     },
     onSubmit,
     onSuccess
@@ -28,9 +33,32 @@ export const UnitForm = ({ initialData = null, onSubmit, onSuccess }: UnitFormPr
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-4">
           <ControlledTextInput
-            name="name"
-            label="Name"
+            name="title"
+            label="Title"
             placeholder="Unit Name"
+            control={form.control}
+          />
+
+          <ControlledFkSelect
+            name='courseId'
+            label="Course"
+            placeholder="Course Name"
+            control={form.control}
+            service={courseService}
+            getOptionLabel={(item) => item.title}
+          />
+
+          <ControlledTextareaInput
+           name="description"
+           label="Description"
+           placeholder="Unit Description"
+           control={form.control}
+          />
+           <ControlledTextInput
+            name="order"
+            type='number'
+            label="Order"
+            placeholder="Unit Order"
             control={form.control}
           />
 

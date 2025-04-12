@@ -95,6 +95,7 @@ export abstract class BaseServiceImpl<T, TPayload> implements BaseService<T, TPa
     return this.delete<ApiResponse>(this.endpoints.delete(slug));
   }
 
+
   protected handleApiError(error: unknown): never {
     if (error instanceof Error) {
       throw error;

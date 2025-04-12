@@ -11,13 +11,14 @@ import { filterWhereClause } from '@/shared/lib/utils/filter-where-clause';
 import { UseCase } from '@/shared/lib/use-cases';
 import { Unit, UnitPayload } from '../../config/unit.type';
 import { UnitFormSchema } from '../../config/unit.schema';
+import { courses } from '@/drizzle/schema';
 
 export const unitUseCase = new UseCase<Unit, UnitPayload, unknown>({
   name: 'Unit',
   schema: UnitFormSchema,
   operations: {
     async create(data: UnitPayload) {
-      const slug = slugify(data.name, { lower: true });
+      const slug = slugify(data.title, { lower: true });
       const existingUnit = await db.query.units.findFirst({
         where: eq(units.slug, slug),
       });
@@ -58,8 +59,8 @@ export const unitUseCase = new UseCase<Unit, UnitPayload, unknown>({
     },
     
     async list(filter: Filter) {
-      const searchColumns = ['name'];
-      const sortColumns = ['name'];
+      const searchColumns = ['title'];
+      const sortColumns = ['title'];
 
       const whereClause = {
         search: filter.search
@@ -80,12 +81,18 @@ export const unitUseCase = new UseCase<Unit, UnitPayload, unknown>({
       const data = await db
         .select({
           id: units.id,
-          name: units.name,
+          title: units.title,
           slug: units.slug,
+          description: units.description,
+          order: units.order,
           createdAt: units.createdAt,
           updatedAt: units.updatedAt,
+          course: {
+            title: sql<string>`courses.title`,
+          },
         })
         .from(units)
+        .leftJoin(courses, eq(units.courseId, sql`courses.id`))
         .where(conditions)
         .orderBy(sort)
         .limit(itemsPerPage)

@@ -8,12 +8,13 @@ export const UnitFormSchema = createInsertSchema(units, {
   id: (s) => s,
   title: (s) => s.min(1, 'Title is required.'),
   description: (s) => s.min(1, 'Description is required.'),
-  courseId: (s) => s,
+  courseId: (s) => s.min(1, 'Course ID is required.'),
 }).pick({
   id: true,
   title: true,
   description: true,
   courseId: true,
+  order: true
 });
 
 export type Unit = z.infer<typeof UnitSelectSchema>;

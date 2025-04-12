@@ -10,5 +10,6 @@ export class CourseServiceImpl extends BaseServiceImpl<Course, CoursePayload> {
   protected serializeParams(filter: Filter): string {
     return courseSearch.serialize(filter);
   }
+  
 }
 export const courseService = new CourseServiceImpl();
