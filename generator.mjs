@@ -236,7 +236,7 @@ export const ${camelName}UseCase = new UseCase<${pascalName}, ${pascalName}Paylo
   schema: ${pascalName}FormSchema,
   operations: {
     async create(data: ${pascalName}Payload) {
-      const slug = slugify(data.name, { lower: true });
+      const slug = slugify(data.title, { lower: true });
       const existing${pascalName} = await db.query.${schema.tableName}.findFirst({
         where: eq(${schema.tableName}.slug, slug),
       });
@@ -299,7 +299,7 @@ export const ${camelName}UseCase = new UseCase<${pascalName}, ${pascalName}Paylo
       const data = await db
         .select({
           id: ${schema.tableName}.id,
-          name: ${schema.tableName}.name,
+          title: ${schema.tableName}.title,
           slug: ${schema.tableName}.slug,
           createdAt: ${schema.tableName}.createdAt,
           updatedAt: ${schema.tableName}.updatedAt,

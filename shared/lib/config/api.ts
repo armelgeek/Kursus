@@ -30,4 +30,12 @@ export const API_ENDPOINTS = {
     update: (slug: string) => `/units/${slug}`,
     delete: (slug: string) => `/units/${slug}`,
   },
+  lessons: {
+    base: '/lessons',
+    list: (qs: string) => `/lessons${qs}`,
+    create: '/lessons',
+    detail: (slug: string) => `/lessons/${slug}`,
+    update: (slug: string) => `/lessons/${slug}`,
+    delete: (slug: string) => `/lessons/${slug}`,
+  },
 } as const;
