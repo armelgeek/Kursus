@@ -2,7 +2,9 @@ import {
     integer,
     pgTable,
     serial,
-    text
+    text,
+    timestamp,
+    varchar
   } from "drizzle-orm/pg-core";
 import { challengesEnum } from "./schema";
 import { lessons } from "./lesson";
@@ -16,4 +18,7 @@ export const challenges = pgTable("challenges", {
   type: challengesEnum("type").notNull(),
   question: text("question").notNull(),
   order: integer("order").notNull(),
+  slug: varchar('slug', { length: 50 }).notNull().unique(),
+        createdAt: timestamp('created_at', { mode: 'string' }).notNull().defaultNow(),
+        updatedAt: timestamp('updated_at', { mode: 'string' }).notNull().defaultNow(),
 });

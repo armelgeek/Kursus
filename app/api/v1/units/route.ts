@@ -1,24 +1,29 @@
-import { db } from "@/drizzle/db";
-import { units } from "@/drizzle/schema";
-import { type NextRequest, NextResponse } from "next/server";
+import { headers } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
 
-export const GET = async () => {
+import { auth } from '@/auth';
+import { createSearchParams } from '@/shared/domain/base.search-param';
+import { createUnit, getUnits } from '@/features/unit/domain/use-cases';
 
-  const data = await db.query.units.findMany();
+export async function GET(request: NextRequest) {
+   const searchParams = createSearchParams();
+   const filter = searchParams.load(request);
+  const data = await getUnits(filter);
 
   return NextResponse.json(data);
-};
+}
 
-export const POST = async (req: NextRequest) => {
+export async function POST(request: NextRequest) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-  const body = (await req.json()) as typeof units.$inferSelect;
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
-  const data = await db
-    .insert(units)
-    .values({
-      ...body,
-    })
-    .returning();
+  const body = await request.json();
+  const data = await createUnit(body);
 
-  return NextResponse.json(data[0]);
-};
+  return NextResponse.json(data);
+}

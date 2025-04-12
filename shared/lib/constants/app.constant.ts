@@ -57,6 +57,24 @@ export const navItems: NavItem[] = [
     isActive: false,
     items: []
   }
+,
+  {
+    title: 'Course',
+    url: '/d/master/course',
+    icon: 'post',
+    shortcut: ['c', 'c'],
+    isActive: false,
+    items: []
+  },
+,
+  {
+    title: 'Unit',
+    url: '/d/master/unit',
+    icon: 'post',
+    shortcut: ['u', 'u'],
+    isActive: false,
+    items: []
+  },
 ];
 
 const MAX_HEARTS = 5;
