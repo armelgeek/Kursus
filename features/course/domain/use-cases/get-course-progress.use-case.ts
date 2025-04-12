@@ -1,9 +1,8 @@
 import { cache } from "react";
 import { getUserProgress } from "./get-user-progress.use-case";
-import { units } from "@/drizzle/schema";
+import { challengeProgress, units } from "@/drizzle/schema";
 import { db } from "@/drizzle/db";
 import { eq } from "drizzle-orm";
-import { challengeProgress } from "@/drizzle/schema/schema";
 
 /**
  * Récupère la progression du cours actif d'un utilisateur, y compris la première leçon non terminée.
@@ -19,7 +18,7 @@ import { challengeProgress } from "@/drizzle/schema/schema";
  * - `activeLessonId` : L'ID de la première leçon non terminée, ou `undefined` si aucune n'est trouvée.
  * Si l'utilisateur n'a pas de cours actif ou de progression, la fonction retourne `null`.
  */
-export const getCourseProgress = cache(async (userId: string) => {
+export const getCourseProgress = cache(async (userId: string | null) => {
     const userProgress = await getUserProgress(userId);
   
     if (!userId || !userProgress?.activeCourseId) return null;

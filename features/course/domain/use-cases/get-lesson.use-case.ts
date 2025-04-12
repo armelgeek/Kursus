@@ -1,9 +1,8 @@
 import { cache } from "react";
 import { getCourseProgress } from "./get-course-progress.use-case";
 import { db } from "@/drizzle/db";
-import { lessons } from "@/drizzle/schema";
+import { challengeProgress, lessons } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
-import { challengeProgress } from "@/drizzle/schema/schema";
 
 /**
  * Récupère une leçon et ses défis associés pour un utilisateur donné.

@@ -1,8 +1,7 @@
 import { cache } from "react";
 import { getUserProgress } from "./get-user-progress.use-case";
 import { db } from "@/drizzle/db";
-import { units } from "@/drizzle/schema";
-import { challengeProgress } from "@/drizzle/schema/schema";
+import { challengeProgress, units } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
 
 /**

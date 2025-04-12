@@ -13,3 +13,6 @@ export { challengeProgress } from './challengeProgress';
 export { challengeOptions } from './challenge-option';
 export { userProgressRelations } from './userProgressRelation';
 export { challengesRelations } from './challengesRelation';
+export { challengeOptionsRelations } from './challengeOptionsRelation';
+export { userSubscription } from './userSubscription';
+export { challengeProgressRelations } from './challengeProgressRelation'

@@ -2,7 +2,7 @@ import { cache } from "react";
 import { getCourseProgress } from "./get-course-progress.use-case";
 import { getLesson } from "./get-lesson.use-case";
 
-export const getLessonPercentage = cache(async (userId: string) => {
+export const getLessonPercentage = cache(async (userId: string | null) => {
     const courseProgress = await getCourseProgress(userId);
   
     if (!courseProgress?.activeLessonId) return 0;

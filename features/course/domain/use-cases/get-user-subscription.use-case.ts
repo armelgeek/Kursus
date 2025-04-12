@@ -1,8 +1,8 @@
 import { db } from "@/drizzle/db";
-import { userSubscription } from "@/drizzle/schema/schema";
 import { DAY_IN_MS } from "@/shared/lib/constants/app.constant";
 import { eq } from "drizzle-orm";
 import { cache } from "react";
+import { userSubscription } from '@/drizzle/schema/userSubscription';
 
 export const getUserSubscription = cache(async (userId: string) => {
 
