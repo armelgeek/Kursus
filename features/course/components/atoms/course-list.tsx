@@ -17,16 +17,12 @@ type ListProps = {
 
 export const List = ({ courses, activeCourseId }: ListProps) => {
   const router = useRouter();
-  const [pending, startTransition] = useTransition();
-
   const onClick = (id: number) => {
-    if (pending) return;
+    console.log('id click', id);
 
     if (id === activeCourseId) return router.push("/");
-
-    startTransition(() => {
-      upsertUserProgress(id).catch(() => toast.error("Something went wrong."));
-    });
+    upsertUserProgress(id).catch(() => toast.error("Something went wrong."));
+    
   };
 
   return (
@@ -38,7 +34,7 @@ export const List = ({ courses, activeCourseId }: ListProps) => {
           title={course.title}
           imageSrc={course.imageSrc || ""}
           onClick={onClick}
-          disabled={pending}
+          disabled={false}
           isActive={course.id === activeCourseId}
         />
       ))}
