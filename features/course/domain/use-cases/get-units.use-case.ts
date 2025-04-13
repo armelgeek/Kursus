@@ -22,7 +22,7 @@ import { eq } from "drizzle-orm";
  * - Une leçon est marquée comme complétée si tous ses défis sont complétés.
  *
  */
-export const getUnits = cache(async (userId: string) => {
+export const getUnits = cache(async (userId: string | null) => {
     const userProgress = await getUserProgress(userId);
 
     if (!userId || !userProgress?.activeCourseId) return [];
