@@ -12,6 +12,7 @@ import { UseCase } from '@/shared/lib/use-cases';
 import { Unit, UnitPayload } from '../../config/unit.type';
 import { UnitFormSchema } from '../../config/unit.schema';
 import { courses } from '@/drizzle/schema';
+import { lessons } from '@/drizzle/schema';
 
 export const unitUseCase = new UseCase<Unit, UnitPayload, unknown>({
   name: 'Unit',
@@ -90,10 +91,27 @@ export const unitUseCase = new UseCase<Unit, UnitPayload, unknown>({
           course: {
             title: sql<string>`courses.title`,
           },
+          lessons: sql<Array<{
+            id: string;
+            title: string;
+            slug: string;
+            order: number;
+          }>>`
+            json_agg(
+              json_build_object(
+                'id', lessons.id,
+                'title', lessons.title,
+                'slug', lessons.slug,
+                'order', lessons.order
+              )
+            ) FILTER (WHERE lessons.id IS NOT NULL)
+          `
         })
         .from(units)
         .leftJoin(courses, eq(units.courseId, sql`courses.id`))
+        .leftJoin(lessons, eq(lessons.unitId, units.id))
         .where(conditions)
+        .groupBy(units.id, sql`courses.title`)
         .orderBy(sort)
         .limit(itemsPerPage)
         .offset(offset);
