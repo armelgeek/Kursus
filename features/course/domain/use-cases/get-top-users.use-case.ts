@@ -1,7 +1,7 @@
 import { db } from "@/drizzle/db";
 import { cache } from "react";
 
-export const getTopUsers = cache(async (userId: string) => {
+export const getTopUsers = cache(async (userId: string | null) => {
 
     if (!userId) return [];
 

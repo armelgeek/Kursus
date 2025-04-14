@@ -11,6 +11,7 @@ const AppNav = () => {
             {[
                 { href: "/", label: "Learn" },
                 { href: "/quests", label: "Quests" },
+                { href: "/leaderboard", label: "Leaderboard" },
                 { href: "/shop", label: "Shop" }
             ].map((item) => (
                 <li key={item.href}>

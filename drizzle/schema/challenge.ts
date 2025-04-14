@@ -1,13 +1,14 @@
 import {
-    integer,
-    pgTable,
-    serial,
-    text,
-    timestamp,
-    varchar
-  } from "drizzle-orm/pg-core";
+  integer,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+  varchar
+} from "drizzle-orm/pg-core";
 import { challengesEnum } from "./schema";
 import { lessons } from "./lesson";
+import { chapters } from "./chapter";
 export const challenges = pgTable("challenges", {
   id: serial("id").primaryKey(),
   lessonId: integer("lesson_id")
@@ -19,6 +20,8 @@ export const challenges = pgTable("challenges", {
   question: text("question").notNull(),
   order: integer("order").notNull(),
   slug: varchar('slug', { length: 50 }).notNull().unique(),
-        createdAt: timestamp('created_at', { mode: 'string' }).notNull().defaultNow(),
-        updatedAt: timestamp('updated_at', { mode: 'string' }).notNull().defaultNow(),
+  associatedChapterId: integer("associated_chapter_id")
+  .references(() => chapters.id),
+  createdAt: timestamp('created_at', { mode: 'string' }).notNull().defaultNow(),
+  updatedAt: timestamp('updated_at', { mode: 'string' }).notNull().defaultNow(),
 });

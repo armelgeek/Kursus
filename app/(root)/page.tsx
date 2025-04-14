@@ -1,5 +1,4 @@
 import LessonPage from '@/features/lesson/pages/lesson-page';
-import { FeedWrapper } from '@/shared/components/atoms/feed-wrapper';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,9 +11,7 @@ export default function Home() {
   return (
     <>
     <LessonPage/>
-     <FeedWrapper>
-
-     </FeedWrapper>
+     
     </>
   );
 }

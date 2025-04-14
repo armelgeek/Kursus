@@ -20,9 +20,9 @@ import { eq } from "drizzle-orm";
  */
 export const getCourseProgress = cache(async (userId: string | null) => {
     const userProgress = await getUserProgress(userId);
-  
+   
     if (!userId || !userProgress?.activeCourseId) return null;
-  
+   
     const unitsInActiveCourse = await db.query.units.findMany({
       orderBy: (units, { asc }) => [asc(units.order)],
       where: eq(units.courseId, userProgress.activeCourseId),

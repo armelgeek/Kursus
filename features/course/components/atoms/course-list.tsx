@@ -18,10 +18,11 @@ type ListProps = {
 export const List = ({ courses, activeCourseId }: ListProps) => {
   const router = useRouter();
   const onClick = (id: number) => {
-    console.log('id click', id);
-
     if (id === activeCourseId) return router.push("/");
-    upsertUserProgress(id).catch(() => toast.error("Something went wrong."));
+    upsertUserProgress(id).catch((e) => {
+      console.log('error',e);
+      toast.error("Something went wrong.");
+    });
     
   };
 

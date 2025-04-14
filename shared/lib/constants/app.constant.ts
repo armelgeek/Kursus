@@ -93,6 +93,15 @@ export const navItems: NavItem[] = [
     isActive: false,
     items: []
   },
+,
+  {
+    title: 'Chapter',
+    url: '/d/master/chapter',
+    icon: 'post',
+    shortcut: ['c', 'c'],
+    isActive: false,
+    items: []
+  },
 ];
 export const POINTS_TO_REFILL = 10;
 const MAX_HEARTS = 5;

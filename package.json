@@ -9,7 +9,7 @@
     "lint": "next lint",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "tsx ./drizzle/migrate.ts",
-    "db:studio": "npx drizzle-kit studio", 
+    "db:studio": "npx drizzle-kit studio",
     "db:push": "npx drizzle-kit push",
     "crud": "node ./generator.mjs generate",
     "crud:schema": "node ./generator.mjs schema",
@@ -20,7 +20,6 @@
     "crud:api": "node ./generator.mjs api",
     "crud:page": "node ./generator.mjs page",
     "crud:navigation": "node ./generator.mjs navigation"
-
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
@@ -65,6 +64,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "commander": "^13.1.0",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.39.0",
@@ -82,22 +82,25 @@
     "postgres": "^3.4.5",
     "qs": "^6.14.0",
     "react": "^19.0.0",
+    "react-circular-progressbar": "^2.2.0",
+    "react-confetti": "^6.4.0",
     "react-day-picker": "^8.10.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
     "react-resizable-panels": "^2.1.7",
+    "react-use": "^17.6.0",
     "recharts": "^2.15.1",
     "redis": "^4.7.0",
     "resend": "^4.1.2",
     "slugify": "^1.6.6",
     "sonner": "^1.7.2",
-   "stripe": "^14.22.0",
+    "stripe": "^14.22.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^7.4.4",
     "vaul": "^1.1.2",
     "zod": "^3.24.1",
-    "commander": "^13.1.0"
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -1,142 +1,21 @@
-<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-  <!-- Définition des couleurs et styles -->
-  <defs>
-    <!-- Gradients pour le corps -->
-    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6A11CB" />
-      <stop offset="100%" stop-color="#2575FC" />
-    </linearGradient>
-    
-    <!-- Gradient pour les lunettes -->
-    <linearGradient id="glassesGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FF9900" />
-      <stop offset="100%" stop-color="#FF3434" />
-    </linearGradient>
-    
-    <!-- Gradient pour les chaussures -->
-    <linearGradient id="shoesGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#111111" />
-      <stop offset="100%" stop-color="#444444" />
-    </linearGradient>
-    
-    <!-- Glow effect -->
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="blur" />
-      <feFlood flood-color="#2575FC" flood-opacity="0.7" result="color" />
-      <feComposite in="color" in2="blur" operator="in" result="glowBlur" />
-      <feComposite in="SourceGraphic" in2="glowBlur" operator="over" />
-    </filter>
-    
-    <!-- Shadows -->
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="5" />
-      <feOffset dx="3" dy="5" result="offsetblur" />
-      <feComponentTransfer>
-        <feFuncA type="linear" slope="0.5" />
-      </feComponentTransfer>
-      <feMerge>
-        <feMergeNode />
-        <feMergeNode in="SourceGraphic" />
-      </feMerge>
-    </filter>
-    
-    <!-- Pattern for background -->
-    <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
-      <rect width="20" height="20" fill="#1a1a2e" />
-      <rect width="10" height="10" fill="#16213e" />
-      <rect x="10" y="10" width="10" height="10" fill="#16213e" />
-    </pattern>
-  </defs>
-  
-  <!-- Background -->
-  <rect width="500" height="500" fill="url(#gridPattern)" />
-  
-  <!-- Aura/Glow -->
-  <circle cx="250" cy="250" r="150" fill="#2575FC" opacity="0.1" filter="url(#glow)" />
-  
-  <!-- Corps principal -->
-  <g filter="url(#shadow)" transform="translate(0, 20)">
-    <!-- Shoes -->
-    <ellipse cx="205" cy="430" rx="40" ry="15" fill="url(#shoesGradient)" />
-    <ellipse cx="295" cy="430" rx="40" ry="15" fill="url(#shoesGradient)" />
-    
-    <!-- Jambes -->
-    <rect x="195" y="360" width="20" height="70" rx="10" fill="#0A0A23" />
-    <rect x="285" y="360" width="20" height="70" rx="10" fill="#0A0A23" />
-    
-    <!-- Corps -->
-    <path d="M180,250 Q170,320 195,360 L305,360 Q330,320 320,250 Q340,200 250,170 Q160,200 180,250 Z" fill="url(#bodyGradient)" />
-    <rect x="220" y="340" width="60" height="20" rx="10" fill="#0A0A23" />
-    
-    <!-- Bras -->
-    <path d="M180,250 Q140,270 120,340" stroke="url(#bodyGradient)" stroke-width="25" stroke-linecap="round" fill="none" />
-    <path d="M320,250 Q360,270 380,340" stroke="url(#bodyGradient)" stroke-width="25" stroke-linecap="round" fill="none" />
-    <circle cx="120" cy="340" r="20" fill="#FFFFFF" stroke="#0A0A23" stroke-width="3" />
-    <circle cx="380" cy="340" r="20" fill="#FFFFFF" stroke="#0A0A23" stroke-width="3" />
-    
-    <!-- Tête -->
-    <circle cx="250" cy="170" r="80" fill="url(#bodyGradient)" />
-    
-    <!-- Visage -->
-    <!-- Lunettes de soleil -->
-    <path d="M190,160 Q250,140 310,160" fill="none" stroke="#000000" stroke-width="8" />
-    <path d="M190,160 L170,170" stroke="#000000" stroke-width="8" />
-    <path d="M310,160 L330,170" stroke="#000000" stroke-width="8" />
-    
-    <circle cx="215" cy="170" r="30" fill="#000000" />
-    <circle cx="285" cy="170" r="30" fill="#000000" />
-    <circle cx="215" cy="170" r="25" fill="url(#glassesGradient)" opacity="0.5" />
-    <circle cx="285" cy="170" r="25" fill="url(#glassesGradient)" opacity="0.5" />
-    
-    <!-- Bouche cool -->
-    <path d="M230,210 Q250,220 270,210" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round" />
-    
-    <!-- Casquette à l'envers -->
-    <path d="M180,130 L320,130 C320,100 280,80 250,80 C220,80 180,100 180,130 Z" fill="#0A0A23" />
-    <path d="M180,130 L320,130 C320,140 280,145 250,145 C220,145 180,140 180,130 Z" fill="#FF3434" />
-    <path d="M280,110 L250,95 L220,110" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
-    
-    <!-- Accessoires cool -->
-    <!-- Écouteurs sans fil -->
-    <path d="M170,170 Q160,150 170,130" fill="none" stroke="#FFFFFF" stroke-width="4" />
-    <circle cx="170" cy="170" r="8" fill="#FF3434" />
-    
-    <path d="M330,170 Q340,150 330,130" fill="none" stroke="#FFFFFF" stroke-width="4" />
-    <circle cx="330" cy="170" r="8" fill="#FF3434" />
-  </g>
-  
-  <!-- Éléments flottants -->
-  <g filter="url(#glow)">
-    <!-- Symboles d'apprentissage flottants -->
-    <!-- Code -->
-    <g transform="translate(390, 180) rotate(15)">
-      <rect width="40" height="30" rx="5" fill="#2575FC" opacity="0.9" />
-      <text x="20" y="20" font-family="monospace" font-size="14" fill="white" text-anchor="middle">&lt;/&gt;</text>
-    </g>
-    
-    <!-- Formule mathématique -->
-    <g transform="translate(110, 180) rotate(-15)">
-      <rect width="40" height="30" rx="5" fill="#FF3434" opacity="0.9" />
-      <text x="20" y="20" font-family="monospace" font-size="14" fill="white" text-anchor="middle">∑=</text>
-    </g>
-    
-    <!-- Langue/Expression -->
-    <g transform="translate(420, 280) rotate(15)">
-      <rect width="40" height="30" rx="5" fill="#7928CA" opacity="0.9" />
-      <text x="20" y="20" font-family="monospace" font-size="14" fill="white" text-anchor="middle">abc</text>
-    </g>
-    
-    <!-- Sciences -->
-    <g transform="translate(80, 280) rotate(-15)">
-      <rect width="40" height="30" rx="5" fill="#00B4D8" opacity="0.9" />
-      <text x="20" y="20" font-family="monospace" font-size="16" fill="white" text-anchor="middle">⚗️</text>
-    </g>
-    
-    <!-- Étoiles décoratives -->
-    <path d="M410,120 L415,130 L425,130 L417,140 L420,150 L410,145 L400,150 L403,140 L395,130 L405,130 Z" fill="#FFD700" />
-    <path d="M90,120 L95,130 L105,130 L97,140 L100,150 L90,145 L80,150 L83,140 L75,130 L85,130 Z" fill="#FFD700" />
-    <path d="M430,350 L435,360 L445,360 L437,370 L440,380 L430,375 L420,380 L423,370 L415,360 L425,360 Z" fill="#FFD700" />
-    <path d="M70,350 L75,360 L85,360 L77,370 L80,380 L70,375 L60,380 L63,370 L55,360 L65,360 Z" fill="#FFD700" />
-  </g>
-
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M80 14C79.8333 7.33333 76.3167 4 69.45 4H10.5C3.66667 4 0.166667 7.33333 0 14V69.95C0.166667 76.65 3.66667 80 10.5 80H69.45C76.3167 80 79.8333 76.65 80 69.95V14Z" fill="url(#paint0_linear_3_13783)"/>
+<path d="M80 10.5C80 3.5 76.4833 0 69.45 0H10.5C3.5 0 0 3.5 0 10.5V14C0.166667 7.33333 3.66667 4 10.5 4H69.45C76.3167 4 79.8333 7.33333 80 14V10.5Z" fill="url(#paint1_linear_3_13783)"/>
+<path d="M32.1667 37.9617C30.2334 35.9951 27.8834 35.0117 25.1167 35.0117C22.35 35.0117 20 35.9951 18.0667 37.9617C16.1 39.8951 15.1167 42.2451 15.1167 45.0117H35.1167C35.1167 42.2451 34.1334 39.8951 32.1667 37.9617Z" fill="white"/>
+<path d="M29.3667 40.7617C28.2 39.5951 26.7834 39.0117 25.1167 39.0117C23.4834 39.0117 22.0834 39.5951 20.9167 40.7617C19.7167 41.9284 19.1167 43.3451 19.1167 45.0117H31.1167C31.1167 43.3451 30.5334 41.9284 29.3667 40.7617Z" fill="#3D465D"/>
+<path d="M62.1667 37.9617C60.2334 35.9951 57.8834 35.0117 55.1167 35.0117C52.35 35.0117 50 35.9951 48.0667 37.9617C46.1 39.8951 45.1167 42.2451 45.1167 45.0117H65.1167C65.1167 42.2451 64.1334 39.8951 62.1667 37.9617Z" fill="white"/>
+<path d="M59.3667 40.7617C58.2 39.5951 56.7834 39.0117 55.1167 39.0117C53.4834 39.0117 52.0834 39.5951 50.9167 40.7617C49.7167 41.9284 49.1167 43.3451 49.1167 45.0117H61.1167C61.1167 43.3451 60.5334 41.9284 59.3667 40.7617Z" fill="#3D465D"/>
+<path d="M14.0667 37.6115L14.8667 40.5115C15 41.0782 15.3 41.4948 15.7667 41.7615C16.2333 42.0282 16.7333 42.0948 17.2667 41.9615L32.7167 37.8115C33.2833 37.6782 33.7 37.3615 33.9667 36.8615C34.2333 36.4282 34.3 35.9282 34.1667 35.3615L33.3667 32.4615C33.2333 31.9282 32.9333 31.5115 32.4667 31.2115C32 30.9782 31.4833 30.9282 30.9167 31.0615L15.4667 35.2115C14.9333 35.3448 14.5333 35.6448 14.2667 36.1115C14 36.5782 13.9333 37.0782 14.0667 37.6115Z" fill="#3D465D"/>
+<path d="M46.3167 31.9615C46.55 32.3949 46.95 32.6782 47.5167 32.8115L62.9667 36.9615C63.5 37.1282 64.0167 37.0949 64.5167 36.8615C64.95 36.5615 65.2333 36.1449 65.3667 35.6115L66.1667 32.7115C66.3 32.1449 66.25 31.6449 66.0167 31.2115C65.7167 30.7115 65.3 30.3782 64.7667 30.2115L49.3167 26.0615C48.75 25.9282 48.25 26.0115 47.8167 26.3115C47.3167 26.5449 47 26.9449 46.8667 27.5115L46.0667 30.4115C45.9333 30.9449 46.0167 31.4615 46.3167 31.9615Z" fill="#3D465D"/>
+<path d="M50.0666 51.9114C49.6 51.6114 49.0833 51.5447 48.5166 51.7114C47.9833 51.8447 47.5666 52.128 47.2666 52.5614C47 52.928 46.6166 53.278 46.1166 53.6114C44.8833 54.378 43.4333 54.7614 41.7666 54.7614C41 54.7614 40.2833 54.6947 39.6166 54.5614C39.05 54.4614 38.5333 54.5614 38.0666 54.8614C37.6 55.0947 37.3 55.4947 37.1666 56.0614C37.0333 56.5614 37.1333 57.0447 37.4666 57.5114C37.7333 57.9114 38.1666 58.178 38.7666 58.3114C39.6666 58.5114 40.6666 58.6114 41.7666 58.6114C44.3333 58.6114 46.55 58.0114 48.4166 56.8114L48.3666 56.8614C49.5 56.1614 50.3333 55.378 50.8666 54.5114C51.1333 54.0447 51.2 53.5614 51.0666 53.0614C50.9 52.528 50.5666 52.1447 50.0666 51.9114Z" fill="#3D465D"/>
+<defs>
+<linearGradient id="paint0_linear_3_13783" x1="40" y1="-1.09798e-07" x2="40" y2="80" gradientUnits="userSpaceOnUse">
+<stop stop-color="#71CF93"/>
+<stop offset="1" stop-color="#59B15C"/>
+</linearGradient>
+<linearGradient id="paint1_linear_3_13783" x1="39.75" y1="-0.25" x2="39.75" y2="43.25" gradientUnits="userSpaceOnUse">
+<stop stop-color="#85DFAF"/>
+<stop offset="1" stop-color="#69C581"/>
+</linearGradient>
+</defs>
 </svg>

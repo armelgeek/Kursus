@@ -25,21 +25,14 @@ export const Unit = ({
   activeLesson,
   activeLessonPercentage,
 }: UnitProps) => {
+  console.log('activeLesson',activeLesson);
   return (
     <>
       <UnitBanner title={title} description={description} />
       <div className="relative flex flex-col items-center">
         {lessons.map((lesson, i) => {
           const isCurrent = lesson.id === activeLesson?.id;
-          
-          // Trouver la dernière leçon complétée
-          const lastCompletedIndex = lessons.findIndex((l, index) => {
-            return index < i && !l.completed;
-          }) - 1;
-          
-          // Une leçon est verrouillée si elle n'est pas la première ET
-          // qu'aucune leçon précédente n'est complétée
-          const isLocked = i > 0 && lastCompletedIndex < 0;
+          const isLocked = !lesson.completed && !isCurrent;
         
           return (
             <LessonButton

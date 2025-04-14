@@ -1,4 +1,3 @@
-
 export { users, sessions, accounts, verifications } from './auth';
 export { categories } from './categories';
 export { courses } from './course';
@@ -16,3 +15,8 @@ export { challengesRelations } from './challengesRelation';
 export { challengeOptionsRelations } from './challengeOptionsRelation';
 export { userSubscription } from './userSubscription';
 export { challengeProgressRelations } from './challengeProgressRelation'
+export { chapters }  from './chapter'
+export { chaptersRelations } from  './chaptersRelation'
+export { chapterProgress } from './chapterProgress'
+export { chapterProgressRelations  } from './chapterProgressRelation'
+

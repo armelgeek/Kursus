@@ -4,7 +4,10 @@ import { Provider } from '@/shared/providers';
 import NextTopLoader from 'nextjs-toploader';
 import "@uploadthing/react/styles.css";
 import '@/shared/styles/globals.css';
-import {  Outfit } from 'next/font/google';
+import { Outfit } from 'next/font/google';
+import { ExitModal } from '@/components/modals/exit-modal';
+import { HeartsModal } from '@/components/modals/hearts-modal';
+import { PracticeModal } from '@/components/modals/practice-modal';
 interface RootLayoutProps {
   readonly children: React.ReactNode;
 }
@@ -15,15 +18,18 @@ const outfit = Outfit({
 });
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  
+
   return (
     <html lang="en" className={`${outfit.className}`} suppressHydrationWarning>
       <body>
         <NextTopLoader showSpinner={true} />
         <Provider>
-              {children}
+          {children}
         </Provider>
         <Toaster richColors />
+        <ExitModal />
+        <HeartsModal />
+        <PracticeModal />
       </body>
     </html>
   );

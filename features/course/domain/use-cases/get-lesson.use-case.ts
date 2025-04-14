@@ -20,7 +20,7 @@ import { eq } from "drizzle-orm";
  *          la leçon ou les données de l'utilisateur ne sont pas trouvées.
  *
  */
-export const getLesson = cache(async (userId: string, id?: number) => {
+export const getLesson = cache(async (userId: string | null, id?: number) => {
     if (!userId) return null;
 
     const courseProgress = await getCourseProgress(userId);
@@ -32,19 +32,35 @@ export const getLesson = cache(async (userId: string, id?: number) => {
         where: eq(lessons.id, lessonId),
         with: {
             challenges: {
-                orderBy: (challenges, { asc }) => [asc(challenges.order)],
-                with: {
-                    challengeOptions: true,
-                    challengeProgress: {
-                        where: eq(challengeProgress.userId, userId),
-                    },
+              orderBy: (challenges, { asc }) => [asc(challenges.order)],
+              with: {
+                challengeOptions: true,
+                challengeProgress: {
+                  where: eq(challengeProgress.userId, userId),
                 },
+              },
             },
-        },
+            chapters: {
+              orderBy: (chapters, { asc }) => [asc(chapters.order)],
+              with: {
+                chapterProgress: {
+                  where: eq(challengeProgress.userId, userId), 
+                },
+              },
+            },
+          }
     });
 
-    if (!data || !data.challenges) return null;
-
+    if (!data) return null;
+    const normalizedChapters = data.chapters.map((chapter) => {
+        const progress = chapter.chapterProgress?.[0];
+        return {
+          ...chapter,
+          completed: progress?.completed ?? false,
+          readingPosition: progress?.readingPosition ?? 0,
+        };
+      });
+    
     const normalizedChallenges = data.challenges.map((challenge) => {
         const completed =
             challenge.challengeProgress &&
@@ -54,5 +70,9 @@ export const getLesson = cache(async (userId: string, id?: number) => {
         return { ...challenge, completed };
     });
 
-    return { ...data, challenges: normalizedChallenges };
+    return { 
+        ...data, 
+        challenges: normalizedChallenges,
+        chapters: normalizedChapters,
+     };
 });

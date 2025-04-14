@@ -2,7 +2,6 @@
 
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { getCourseById } from "./get-course-by-id.use-case";
 import { auth } from "@/auth";
 import { headers } from "next/headers";
@@ -13,47 +12,50 @@ import { MAX_HEARTS, POINTS_TO_REFILL } from "@/shared/lib/constants/app.constan
 
 
 export const upsertUserProgress = async (courseId: number) => {
-
     const session = await auth.api.getSession({ headers: await headers() });
-    if (!session?.user) throw new Error("Unauthorized.");
-    const userId = session.user.id || null;
-
+    if (!session?.user) throw new Error("Non autorisé.");
+    const userId = session.user.id;
+    if (!userId) throw new Error("L'ID utilisateur est null.");
+    
     const course = await getCourseById(courseId);
 
-    if (!course) throw new Error("Course not found.");
+    if (!course) throw new Error("Cours non trouvé.");
 
     if (!course.units.length || !course.units[0].lessons.length)
-        throw new Error("Course is empty.");
+        throw new Error("Le cours est vide.");
 
     const existingUserProgress = await getUserProgress(userId);
 
     if (existingUserProgress) {
+        // Si la progression de l'utilisateur existe, on la met à jour
         await db
             .update(userProgress)
             .set({
                 activeCourseId: courseId,
-                userName: session?.user.name || "User",
+                userName: session?.user.name || "Utilisateur",
                 userImageSrc: "/mascot.svg",
             })
             .where(eq(userProgress.userId, userId));
-
-        revalidatePath("/courses");
-        revalidatePath("/");
-        redirect("/");
+    } else {
+        // Si la progression de l'utilisateur n'existe pas, on l'insère
+        try {
+            await db.insert(userProgress).values({
+                userId,
+                activeCourseId: courseId,
+                userName: session?.user.name || "Utilisateur",
+                userImageSrc: "/mascot.svg",
+            });
+        } catch (error: any) {
+            if (error.message.includes("unique constraint")) {
+                throw new Error("Entrée dupliquée pour la progression de l'utilisateur.");
+            }
+            throw error;
+        }
     }
-
-    await db.insert(userProgress).values({
-        userId,
-        activeCourseId: courseId,
-        userName: session?.user.name || "User",
-        userImageSrc: "/mascot.svg",
-    });
 
     revalidatePath("/courses");
     revalidatePath("/");
-    redirect("/");
 };
-
 export const reduceHearts = async (challengeId: number) => {
     const session = await auth.api.getSession({ headers: await headers() });
     if (!session?.user) throw new Error("Unauthorized.");

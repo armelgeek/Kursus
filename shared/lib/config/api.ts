@@ -54,4 +54,12 @@ export const API_ENDPOINTS = {
     update: (slug: string) => `/challengeOptions/${slug}`,
     delete: (slug: string) => `/challengeOptions/${slug}`,
   },
+  chapters: {
+    base: '/chapters',
+    list: (qs: string) => `/chapters${qs}`,
+    create: '/chapters',
+    detail: (slug: string) => `/chapters/${slug}`,
+    update: (slug: string) => `/chapters/${slug}`,
+    delete: (slug: string) => `/chapters/${slug}`,
+  },
 } as const;

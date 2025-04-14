@@ -17,7 +17,6 @@ const CourseSectionList = async () => {
     coursesData,
     userProgressData,
   ]);
-  console.log('courses.data',courses.data);
 
   return (
     <div className="mx-auto h-full max-w-[912px] px-3">
